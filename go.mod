@@ -1,3 +1,3 @@
-module cms
+module dluweb
 
-go 1.15
+go 1.21.3

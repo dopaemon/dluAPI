@@ -1,7 +1,7 @@
 package main
 
 import (
-	"cms/controller"
+	"dluweb/controller"
 	"log"
 	"net/http"
 )
