@@ -1,6 +1,8 @@
 package controller
 
 import (
+	// "fmt"
+
 	"html/template"
 	"log"
 	"net/http"
@@ -8,6 +10,11 @@ import (
 )
 
 func Dashboard(w http.ResponseWriter, r *http.Request) {
+	if (!Response.IsLogin) {
+		http.Redirect(w, r, "/login", http.StatusSeeOther)
+		return
+	}
+
 	if r.URL.Path != "/" {
 		// return 404 not found page
 		tmpl, err := template.ParseFiles(
@@ -42,13 +49,14 @@ func Dashboard(w http.ResponseWriter, r *http.Request) {
 		path.Join("views/includes", "footer.html"),
 		path.Join("views/includes", "scripts.html"),
 	)
+
 	if err != nil {
 		log.Println(err)
 		http.Error(w, "Error is hapenning, keep calm", http.StatusInternalServerError)
 		return
 	}
 
-	err = tmpl.Execute(w, nil)
+	err = tmpl.Execute(w, Response)
 	if err != nil {
 		log.Println(err)
 		http.Error(w, "Error is hapenning, keep calm", http.StatusInternalServerError)
