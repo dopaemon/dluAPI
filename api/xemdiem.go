@@ -1,7 +1,7 @@
 package api
 
 import (
-	"fmt"
+	// "fmt"
 	"io"
 	"log"
 	"net/http"
@@ -1274,5 +1274,6 @@ func XemDiem(Token string) []byte {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Printf("%s\n", bodyText)
+	// fmt.Printf("%s\n", bodyText)
+	return bodyText
 }
